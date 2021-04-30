@@ -1,7 +1,6 @@
 import firebase from 'firebase/app';
 import React, { FC } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import './App.css';
 import Dashboard from './Components/Dashboard';
 import FormPage from './Components/FormPage';
 import { useFirebaseContext } from './Utils/firebaseContext';
@@ -19,7 +18,7 @@ const App: FC = () => {
   }
 
   return (
-    <header className="App-header">
+    <Page>
       <Router>
         <Navbar>
           <li>
@@ -36,7 +35,7 @@ const App: FC = () => {
           </Route>
         </Switch>
       </Router>
-    </header>
+    </Page>
   );
 };
 
@@ -53,4 +52,17 @@ const Navbar = styled.ul`
   position: fixed;
   top: 0;
   margin: 0;
+`;
+
+const Page = styled.div`
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  margin: 0;
+  padding: 0;
 `;

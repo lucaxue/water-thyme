@@ -1,24 +1,28 @@
-import React, { FC } from "react";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import styled from "styled-components";
-import { useFirebaseContext } from "../Utils/firebaseContext";
-import PlantCard from "./PlantCard";
+import React, { FC } from 'react';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+import styled from 'styled-components';
+import { useFirebaseContext } from '../Utils/firebaseContext';
+import PlantCard from './PlantCard';
 
 const Dashboard: FC = () => {
   const { auth, firestore } = useFirebaseContext();
-  const plantsRef = firestore.collection("plants");
+  const plantsRef = firestore.collection('plants');
 
-  const query = plantsRef.where("uid", "==", auth?.currentUser?.uid);
+  const query = plantsRef.where('uid', '==', auth?.currentUser?.uid);
 
-  const [plants] = useCollectionData(query, { idField: "id" });
-  console.log(plants);
-
+  const [plants] = useCollectionData(query, { idField: 'id' });
   return (
     <div>
+      <h1>Your beautiful plants</h1>
       <CardsWrapper>
         {plants &&
           plants.map((plant) => <PlantCard key={plant.id} data={plant} />)}
       </CardsWrapper>
+      {auth.currentUser && (
+        <button className="sign-out" onClick={() => auth.signOut()}>
+          Sign Out
+        </button>
+      )}
     </div>
   );
 };
