@@ -1,12 +1,12 @@
-import firebase from "firebase/app";
-import React, { FC } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import "./App.css";
-import Dashboard from "./Components/Dashboard";
-import FormPage from "./Components/FormPage";
-import { useFirebaseContext } from "./Utils/firebaseContext";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import styled from "styled-components";
+import firebase from 'firebase/app';
+import React, { FC } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import './App.css';
+import Dashboard from './Components/Dashboard';
+import FormPage from './Components/FormPage';
+import { useFirebaseContext } from './Utils/firebaseContext';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import styled from 'styled-components';
 
 const App: FC = () => {
   const { auth } = useFirebaseContext();
@@ -52,4 +52,5 @@ const Navbar = styled.ul`
   list-style: none;
   position: fixed;
   top: 0;
+  margin: 0;
 `;
