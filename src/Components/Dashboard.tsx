@@ -18,11 +18,8 @@ const Dashboard: FC = () => {
         {plants &&
           plants.map((plant) => <PlantCard key={plant.id} data={plant} />)}
       </CardsWrapper>
-      {auth.currentUser && (
-        <button className="sign-out" onClick={() => auth.signOut()}>
-          Sign Out
-        </button>
-      )}
+      
+    
     </div>
   );
 };
