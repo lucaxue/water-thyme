@@ -21,7 +21,7 @@ const FormPage: FC = () => {
   const { auth, firestore } = useFirebaseContext();
   const plantsRef = firestore.collection('plants');
 
-  const addPlant = async (e: any) => {
+  const addPlant: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
     const { uid } = auth.currentUser;
@@ -31,6 +31,7 @@ const FormPage: FC = () => {
       uid,
     });
   };
+
   return (
     <div>
       <Wrapper onSubmit={addPlant}>
