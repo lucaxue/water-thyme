@@ -32,16 +32,24 @@ export const App: React.FC = () => {
           <Route path="/form">{user && <FormPage />}</Route>
           <Route path="/">{user ? <DashboardPage /> : <LandingPage />}</Route>
         </Switch>
+        <Footer>
+          <div>
+            <h1>water thyme</h1>
+            <p>Making sure your plants are happy...</p>
+          </div>
+        </Footer>
       </Router>
     </Page>
   );
 };
 
 const Navbar = styled.ul`
+  z-index: 1;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+  height: 5rem;
   background: rgba(255, 255, 255, 0.726);
   align-items: center;
   box-shadow: 0 1px 5px #a7a7a7;
@@ -69,6 +77,20 @@ const Page = styled.div`
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: #292929;
-  margin: 0;
+  margin: 5rem 0 0 0;
   padding: 0;
+  width: 100%;
+`;
+
+const Footer = styled.footer`
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 40vh;
+  background: #292929;
+  color: #f7f6f9;
+  font-size: 1rem;
 `;

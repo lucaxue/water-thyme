@@ -33,4 +33,9 @@ const Card = styled.div`
   color: rgb(51, 55, 59);
   width: 20rem;
   font-size: 1rem;
+  transition: 0.2s;
+  &:hover {
+    transform: scale(1.02);
+    transform: translateY(2);
+  }
 `;

@@ -12,19 +12,52 @@ export const DashboardPage: React.FC = () => {
   const [plants] = useCollectionData(query, { idField: 'id' });
 
   return (
-    <div>
-      <h1>Your beautiful plants</h1>
+    <Container>
+      <Header>
+        <div>
+          <h1>Your Beautiful Plants</h1>
+          <p>Have you forgotten to water your plants?</p>
+        </div>
+        <HeaderImg
+          src="https://images.unsplash.com/photo-1471086569966-db3eebc25a59?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+          alt="plant in water jar"
+        />
+      </Header>
       <CardsWrapper>
         {plants &&
           plants.map((plant) => <PlantCard key={plant.id} data={plant} />)}
       </CardsWrapper>
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  display: grid;
+  place-items: center;
+  grid-template-rows: 50vh auto;
+  width: 100%;
+  grid-gap: 5rem;
+  margin-bottom: 5rem;
+`;
+
+const Header = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  place-items: center;
+  width: 100%;
+  background: #ebedee;
+  /* box-shadow: inset 0 1px 5px #a7a7a7; */
+`;
+
+const HeaderImg = styled.img`
+  height: 50vh;
+  transform: scaleX(-1);
+`;
 
 const CardsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  min-width: 80vw;
+  justify-content: center;
+  gap: 2rem;
+  width: 80vw;
 `;

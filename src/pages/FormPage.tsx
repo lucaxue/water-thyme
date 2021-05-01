@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useFirebaseContext } from '../utils/firebaseContext';
 import styled from 'styled-components';
+import { Button } from '../components/Button';
 
 type Plant = {
   nickname: string;
@@ -35,6 +36,7 @@ export const FormPage: React.FC = () => {
 
   return (
     <div>
+      <h1>Add your new plant</h1>
       <Wrapper onSubmit={addPlant}>
         <label htmlFor="nickname">Nickname</label>
         <input
@@ -79,7 +81,7 @@ export const FormPage: React.FC = () => {
             setNewPlant({ ...newPlant, notification: checked });
           }}
         />
-        <button type="submit">Add new plant!</button>
+        <Button type="submit">Add new plant!</Button>
       </Wrapper>
     </div>
   );
@@ -91,5 +93,6 @@ const Wrapper = styled.form`
   background: rgba(255, 255, 255, 0.52);
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
   padding: 5rem;
 `;
