@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { FirebaseContextProvider } from './utils/firebaseContext';
 import './index.css';
-import App from './App';
-import { FirebaseContextProvider } from './Utils/firebaseContext';
+import { App } from './App';
 
 ReactDOM.render(
   <React.StrictMode>

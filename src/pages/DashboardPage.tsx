@@ -1,16 +1,16 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { useFirebaseContext } from '../utils/firebaseContext';
 import styled from 'styled-components';
-import { useFirebaseContext } from '../Utils/firebaseContext';
-import PlantCard from './PlantCard';
+import { PlantCard } from '../components/PlantCard';
 
-const Dashboard: FC = () => {
+export const DashboardPage: React.FC = () => {
   const { auth, firestore } = useFirebaseContext();
+
   const plantsRef = firestore.collection('plants');
-
   const query = plantsRef.where('uid', '==', auth?.currentUser?.uid);
-
   const [plants] = useCollectionData(query, { idField: 'id' });
+
   return (
     <div>
       <h1>Your beautiful plants</h1>
@@ -18,13 +18,9 @@ const Dashboard: FC = () => {
         {plants &&
           plants.map((plant) => <PlantCard key={plant.id} data={plant} />)}
       </CardsWrapper>
-      
-    
     </div>
   );
 };
-
-export default Dashboard;
 
 const CardsWrapper = styled.div`
   display: flex;

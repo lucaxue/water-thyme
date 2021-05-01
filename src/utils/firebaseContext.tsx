@@ -1,7 +1,7 @@
+import React, { createContext, useContext } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
-import { createContext, useContext, FC } from 'react';
 
 firebase.initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
@@ -22,17 +22,15 @@ interface props {
   children: JSX.Element;
 }
 
-export const FirebaseContextProvider: FC<props> = ({ children }) => {
-  return (
-    <FirebaseContext.Provider
-      value={{
-        auth,
-        firestore,
-      }}
-    >
-      {children}
-    </FirebaseContext.Provider>
-  );
-};
+export const FirebaseContextProvider: React.FC<props> = ({ children }) => (
+  <FirebaseContext.Provider
+    value={{
+      auth,
+      firestore,
+    }}
+  >
+    {children}
+  </FirebaseContext.Provider>
+);
 
 export const useFirebaseContext = () => useContext(FirebaseContext);

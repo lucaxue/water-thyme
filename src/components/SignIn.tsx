@@ -1,9 +1,9 @@
+import React from 'react';
 import firebase from 'firebase';
-import React, { FC } from 'react';
-import { useFirebaseContext } from '../Utils/firebaseContext';
-import Button from './Button';
+import { useFirebaseContext } from '../utils/firebaseContext';
+import { Button } from './Button';
 
-export const SignIn: FC = () => {
+export const SignIn: React.FC = () => {
   const { auth } = useFirebaseContext();
   function signIn() {
     const provider = new firebase.auth.GoogleAuthProvider();

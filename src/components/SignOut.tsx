@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
-import { useFirebaseContext } from '../Utils/firebaseContext';
-import Button from './Button';
+import React from 'react';
+import { useFirebaseContext } from '../utils/firebaseContext';
+import { Button } from './Button';
 
-export const SignOut: FC = () => {
+export const SignOut: React.FC = () => {
   const { auth } = useFirebaseContext();
   return (
     auth.currentUser && (

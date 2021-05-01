@@ -1,6 +1,6 @@
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
+import { useFirebaseContext } from '../utils/firebaseContext';
 import styled from 'styled-components';
-import { useFirebaseContext } from '../Utils/firebaseContext';
 
 type Plant = {
   nickname: string;
@@ -10,7 +10,10 @@ type Plant = {
   notification: boolean;
 };
 
-const FormPage: FC = () => {
+export const FormPage: React.FC = () => {
+  const { auth, firestore } = useFirebaseContext();
+  const plantsRef = firestore.collection('plants');
+
   const [newPlant, setNewPlant] = useState<Plant>({
     nickname: '',
     name: '',
@@ -18,8 +21,6 @@ const FormPage: FC = () => {
     waterFrequency: 0,
     notification: false,
   });
-  const { auth, firestore } = useFirebaseContext();
-  const plantsRef = firestore.collection('plants');
 
   const addPlant: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
@@ -83,8 +84,6 @@ const FormPage: FC = () => {
     </div>
   );
 };
-
-export default FormPage;
 
 const Wrapper = styled.form`
   border-radius: 5px;

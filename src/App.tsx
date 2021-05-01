@@ -1,15 +1,15 @@
-import React, { FC } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import Dashboard from './Components/Dashboard';
-import FormPage from './Components/FormPage';
-import { useFirebaseContext } from './Utils/firebaseContext';
+import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useFirebaseContext } from './utils/firebaseContext';
 import styled from 'styled-components';
-import { LandingPage } from './Components/LandingPage';
-import { SignIn } from './Components/SignIn';
-import { SignOut } from './Components/SignOut';
+import { DashboardPage } from './pages/DashboardPage';
+import { FormPage } from './pages/FormPage';
+import { LandingPage } from './pages/LandingPage';
+import { SignIn } from './components/SignIn';
+import { SignOut } from './components/SignOut';
 
-const App: FC = () => {
+export const App: React.FC = () => {
   const { auth } = useFirebaseContext();
   const [user] = useAuthState(auth);
 
@@ -30,14 +30,12 @@ const App: FC = () => {
         </Navbar>
         <Switch>
           <Route path="/form">{user && <FormPage />}</Route>
-          <Route path="/">{user ? <Dashboard /> : <LandingPage />}</Route>
+          <Route path="/">{user ? <DashboardPage /> : <LandingPage />}</Route>
         </Switch>
       </Router>
     </Page>
   );
 };
-
-export default App;
 
 const Navbar = styled.ul`
   display: flex;
