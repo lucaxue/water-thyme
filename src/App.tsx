@@ -105,7 +105,7 @@ const Anchor = styled.a<{ underline?: boolean }>`
 
 const Page = styled.div`
   background: #f7f6f9;
-  min-height: 110vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
