@@ -2,6 +2,7 @@ import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+import { Footer } from './components/Footer';
 import { SignIn } from './components/SignIn';
 import { SignOut } from './components/SignOut';
 import { DashboardPage } from './pages/DashboardPage';
@@ -14,38 +15,38 @@ export const App: React.FC = () => {
   const [user] = useAuthState(auth);
 
   return (
-    <Page>
-      <Router>
-        <Navbar>
-          <Anchor href="/">
-            <h1>water thyme</h1>
-          </Anchor>
-          <NavLinks>
-            <li>
-              <Anchor href="/" underline>
-                Home
-              </Anchor>
-            </li>
-            <li>
-              <Anchor href="/form" underline>
-                Add New Plant
-              </Anchor>
-            </li>
-            {user ? <SignOut /> : <SignIn />}
-          </NavLinks>
-        </Navbar>
+    <Router>
+      <Navbar>
+        <Anchor href="/">
+          <h1>water thyme</h1>
+        </Anchor>
+        <NavLinks>
+          <li>
+            <Anchor href="/" underline>
+              Home
+            </Anchor>
+          </li>
+          <li>
+            <Anchor href="/form" underline>
+              Add New Plant
+            </Anchor>
+          </li>
+          {user ? <SignOut /> : <SignIn />}
+        </NavLinks>
+      </Navbar>
+      <Page>
         <Switch>
           <Route path="/form">{user && <FormPage />}</Route>
           <Route path="/">{user ? <DashboardPage /> : <LandingPage />}</Route>
         </Switch>
-        <Footer>
-          <div>
-            <h1>water thyme</h1>
-            <p>Making sure your plants are happy...</p>
-          </div>
-        </Footer>
-      </Router>
-    </Page>
+      </Page>
+      <Footer>
+        <div>
+          <h1>water thyme</h1>
+          <p>Making sure your plants are happy...</p>
+        </div>
+      </Footer>
+    </Router>
   );
 };
 
@@ -79,7 +80,7 @@ const Anchor = styled.a<{ underline?: boolean }>`
   color: #292929;
   position: relative;
   font-weight: bold;
-  letter-spacing: 0.1rem;
+  letter-spacing: 0.02rem;
   ${(props) =>
     props.underline &&
     css`
@@ -104,27 +105,14 @@ const Anchor = styled.a<{ underline?: boolean }>`
 
 const Page = styled.div`
   background: #f7f6f9;
-  min-height: 100vh;
+  min-height: 110vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: #292929;
-  margin: 5rem 0 0 0;
+  margin: 0;
   padding: 0;
   width: 100%;
-`;
-
-const Footer = styled.footer`
-  display: grid;
-  place-items: center;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 40vh;
-  background: #292929;
-  color: #f7f6f9;
-  font-size: 1rem;
 `;
