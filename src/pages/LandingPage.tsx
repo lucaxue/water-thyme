@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { SignIn } from '../components/SignIn';
 
-
 export const LandingPage: React.FC = () => (
   <Wrapper>
     <div>
@@ -20,6 +19,7 @@ export const LandingPage: React.FC = () => (
 const Heading = styled.h1`
   font-size: 8rem;
   margin-bottom: -1rem;
+  letter-spacing: 0.5rem;
 `;
 
 const Wrapper = styled.div`

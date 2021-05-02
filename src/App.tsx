@@ -1,13 +1,13 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useFirebaseContext } from './utils/firebaseContext';
-import styled from 'styled-components';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import styled, { css } from 'styled-components';
+import { SignIn } from './components/SignIn';
+import { SignOut } from './components/SignOut';
 import { DashboardPage } from './pages/DashboardPage';
 import { FormPage } from './pages/FormPage';
 import { LandingPage } from './pages/LandingPage';
-import { SignIn } from './components/SignIn';
-import { SignOut } from './components/SignOut';
+import { useFirebaseContext } from './utils/firebaseContext';
 
 export const App: React.FC = () => {
   const { auth } = useFirebaseContext();
@@ -17,13 +17,19 @@ export const App: React.FC = () => {
     <Page>
       <Router>
         <Navbar>
-          <h1>water thyme</h1>
+          <Anchor href="/">
+            <h1>water thyme</h1>
+          </Anchor>
           <NavLinks>
             <li>
-              <Link to="/">Home</Link>
+              <Anchor href="/" underline>
+                Home
+              </Anchor>
             </li>
             <li>
-              <Link to="/form">Add New Plant</Link>
+              <Anchor href="/form" underline>
+                Add New Plant
+              </Anchor>
             </li>
             {user ? <SignOut /> : <SignIn />}
           </NavLinks>
@@ -66,6 +72,34 @@ const NavLinks = styled.div`
   align-items: center;
   min-width: 30%;
   justify-content: space-evenly;
+`;
+
+const Anchor = styled.a<{ underline?: boolean }>`
+  text-decoration: none;
+  color: #292929;
+  position: relative;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  ${(props) =>
+    props.underline &&
+    css`
+      &:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        top: 1.5rem;
+        background: #292929;
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+      }
+      &:hover:before {
+        visibility: visible;
+        width: 100%;
+      }
+    `}
 `;
 
 const Page = styled.div`

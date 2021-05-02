@@ -46,7 +46,7 @@ const Header = styled.div`
   place-items: center;
   width: 100%;
   background: #ebedee;
-  /* box-shadow: inset 0 1px 5px #a7a7a7; */
+  letter-spacing: 0.1rem;
 `;
 
 const HeaderImg = styled.img`
