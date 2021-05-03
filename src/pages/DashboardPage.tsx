@@ -9,6 +9,9 @@ export const DashboardPage: React.FC = () => {
 
   const plantsRef = firestore.collection('plants');
   const query = plantsRef.where('uid', '==', auth?.currentUser?.uid);
+  // .orderBy('nextWateringDay');
+  // ^orderBy query doesn't work, so sorted using js below (line 32-36)
+
   const [plants] = useCollectionData(query, { idField: 'id' });
 
   return (
@@ -16,7 +19,7 @@ export const DashboardPage: React.FC = () => {
       <Header>
         <div>
           <h1>Your Beautiful Plants</h1>
-          <p>Have you forgotten to water your plants?</p>
+          <p>Check if your plants need watering.</p>
         </div>
         <HeaderImg
           src="https://images.unsplash.com/photo-1471086569966-db3eebc25a59?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
@@ -25,7 +28,13 @@ export const DashboardPage: React.FC = () => {
       </Header>
       <CardsWrapper>
         {plants &&
-          plants.map((plant) => <PlantCard key={plant.id} data={plant} />)}
+          plants
+            .sort((a, b) => {
+              const aDate = new Date(a.nextWateringDay.toDate());
+              const bDate = new Date(b.nextWateringDay.toDate());
+              return aDate.getTime() - bDate.getTime();
+            })
+            .map((plant) => <PlantCard key={plant.id} data={plant} />)}
       </CardsWrapper>
     </Container>
   );
